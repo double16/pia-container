@@ -1,0 +1,13 @@
+[Unit]
+Description=Connect to PIA VPN
+After=tun.target piavpn.target pia-auth.target pia-configure.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/piactl -d connect
+ExecStop=/usr/local/bin/piactl -d disconnect
+StandardOutput=journal
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 

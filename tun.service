@@ -1,0 +1,13 @@
+[Unit]
+Description=Creates the /dev/net/tun device
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "mkdir -p /dev/net && mknod -m 0666 /dev/net/tun c 10 200"
+RemainAfterExit=false
+ExecStop=
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target 

@@ -1,0 +1,16 @@
+[Unit]
+Description=Configure pia for background and login
+After=piavpn.target pia-auth.target
+
+[Service]
+Type=oneshot
+ExecCondition=test -f /config/pia-auth.conf
+ExecCondition=[ $(cat /config/pia-auth.conf | sed '/^\s*$/d' | wc -l) -ge 2 ]
+ExecStart=/usr/local/bin/pia-configure.sh
+RemainAfterExit=false
+ExecStop=
+StandardOutput=journal
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target 
