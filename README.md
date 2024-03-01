@@ -13,6 +13,7 @@ Example docker-compose.yml:
 ```yaml
 volumes:
   pia:
+  piaetc:
 
 services:
   pia:
@@ -27,6 +28,7 @@ services:
       - HOST_NETWORK=192.168.0.0/18
     volumes:
       - pia:/config
+      - piaetc:/opt/piavpn/etc
 
   client1:
     image: ubuntu
