@@ -1,7 +1,7 @@
-FROM ubuntu:23.10
+FROM ubuntu:24.04
 
 ARG PIA_VERSION=3.5.7-08120
-ARG SYSTEMCTL_VER=1.5.7417
+ARG SYSTEMCTL_VER=ac9b3916dd069ba053e4259cf74131028935f5e1
 ARG APT_PROXY
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -14,7 +14,7 @@ RUN apt-get -q update && \
 
 RUN curl -L -o /tmp/pia.run https://installers.privateinternetaccess.com/download/pia-linux-${PIA_VERSION}.run
 
-RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/v${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
+RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
     chmod +x /usr/bin/systemctl
 
 ADD *.service /etc/systemd/system/

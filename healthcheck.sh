@@ -1,5 +1,2 @@
 #!/usr/bin/env bash
-
-piactl get connectionstate
-
-exit 1
+piactl get connectionstate | grep -qi 'Connected'
