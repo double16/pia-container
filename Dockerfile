@@ -19,9 +19,9 @@ RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-r
 
 ADD *.service /etc/systemd/system/
 ADD healthcheck.sh /healthcheck.sh
-ADD return-route.sh pia-configure.sh /usr/local/bin/
+ADD pia-configure.sh /usr/local/bin/
 
-RUN systemctl enable tun pia-auth pia-configure pia-connect &&\
+RUN systemctl enable tun pia-auth pia-configure pia-connect ipnat &&\
     useradd --home-dir /pia pia &&\
     mkdir -p /pia &&\
     chown -R pia:pia /pia &&\

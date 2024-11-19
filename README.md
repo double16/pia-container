@@ -24,8 +24,6 @@ services:
     dns:
       - 8.8.8.8
       - 8.8.4.4
-    environment:
-      - HOST_NETWORK=192.168.0.0/18
     volumes:
       - config:/config
       - piaetc:/opt/piavpn/etc

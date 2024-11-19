@@ -4,8 +4,6 @@
 # Configure PIA
 #
 
-iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
-
 /usr/local/bin/piactl -d background enable || exit $?
 
 /usr/local/bin/piactl -d login /config/pia-auth.conf
