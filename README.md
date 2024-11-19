@@ -12,7 +12,7 @@ Example docker-compose.yml:
 
 ```yaml
 volumes:
-  pia:
+  config:
   piaetc:
 
 services:
@@ -22,12 +22,12 @@ services:
     cap_add:
       - NET_ADMIN
     dns:
-      - 209.222.18.222
-      - 209.222.18.218
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       - HOST_NETWORK=192.168.0.0/18
     volumes:
-      - pia:/config
+      - config:/config
       - piaetc:/opt/piavpn/etc
 
   client1:
