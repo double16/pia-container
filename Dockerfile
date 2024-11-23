@@ -12,16 +12,17 @@ RUN apt-get -q update && \
     rm -rf /var/lib/apt/lists/* &&\
     rm -rf /tmp/*
 
-RUN curl -L -o /tmp/pia.run https://installers.privateinternetaccess.com/download/pia-linux-${PIA_VERSION}.run
+ADD download.sh /tmp/
+RUN /tmp/download.sh ${PIA_VERSION} && rm /tmp/download.sh
 
 RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
     chmod +x /usr/bin/systemctl
 
 ADD *.service /etc/systemd/system/
 ADD healthcheck.sh /healthcheck.sh
-ADD return-route.sh pia-configure.sh /usr/local/bin/
+ADD pia-configure.sh /usr/local/bin/
 
-RUN systemctl enable tun pia-auth pia-configure pia-connect &&\
+RUN systemctl enable tun pia-auth pia-configure pia-connect ipnat &&\
     useradd --home-dir /pia pia &&\
     mkdir -p /pia &&\
     chown -R pia:pia /pia &&\

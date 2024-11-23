@@ -1,0 +1,13 @@
+[Unit]
+Description=Configures IP NAT
+After=pia-connect.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
+RemainAfterExit=false
+ExecStop=
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
