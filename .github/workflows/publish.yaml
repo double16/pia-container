@@ -62,5 +62,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          compress: true
-          output: type=image,oci-mediatypes=true,compression=zstd,compression-level=3,force-compression=true
+          outputs: type=image,oci-mediatypes=true,compression=zstd,compression-level=3,force-compression=true
