@@ -4,7 +4,7 @@ After=
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c "[ -s /config/pia-auth.conf ] || ( [ -n "${PIA_USER}" ] && [ -n "${PIA_PASS}" ] && echo "${PIA_USER}" > /config/pia-auth.conf && echo "${PIA_PASS}" >> /config/pia-auth.conf )"
+ExecStart=/usr/local/bin/pia-auth.sh
 RemainAfterExit=false
 ExecStop=
 StandardOutput=journal

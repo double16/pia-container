@@ -22,7 +22,7 @@ ADD *.service /etc/systemd/system/
 ADD healthcheck.sh /healthcheck.sh
 ADD pia-configure.sh /usr/local/bin/
 
-RUN systemctl enable tun pia-auth pia-configure pia-connect ipnat &&\
+RUN systemctl enable pia-auth pia-configure pia-connect ipnat &&\
     useradd --home-dir /pia pia &&\
     mkdir -p /pia &&\
     chown -R pia:pia /pia &&\

@@ -21,9 +21,12 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    privileged: true
+    # PIA DNS: https://helpdesk.privateinternetaccess.com/kb/articles/using-pia-dns-in-custom-configurations
     dns:
-      - 8.8.8.8
-      - 8.8.4.4
+      - 10.0.0.242
     volumes:
       - config:/config
       - piaetc:/opt/piavpn/etc

@@ -4,8 +4,9 @@ After=piavpn.target pia-auth.target
 
 [Service]
 Type=oneshot
-ExecCondition=test -f /config/pia-auth.conf
-ExecCondition=[ $(cat /config/pia-auth.conf | sed '/^\s*$/d' | wc -l) -ge 2 ]
+Environment="LD_LIBRARY_PATH=/opt/piavpn/lib"
+ExecCondition=/bin/test -f /config/pia-auth.conf
+ExecCondition=/bin/sh -c "[ $(cat /config/pia-auth.conf | sed '/^\s*$/d' | wc -l) -ge 2 ]"
 ExecStart=/usr/local/bin/pia-configure.sh
 RemainAfterExit=false
 ExecStop=
