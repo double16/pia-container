@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-ARG PIA_VERSION=3.7-08412
+ARG PIA_VERSION=3.7.2-08420
 ARG SYSTEMCTL_VER=v1.5.9063
 ARG APT_PROXY
 ENV DEBIAN_FRONTEND=noninteractive
@@ -15,7 +15,7 @@ RUN apt-get -q update && \
 ADD download.sh /tmp/
 RUN /tmp/download.sh ${PIA_VERSION} && rm /tmp/download.sh
 
-RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
+RUN curl -L -o /usr/bin/systemctl https://github.com/gdraheim/docker-systemctl-replacement/raw/refs/tags/${SYSTEMCTL_VER}/files/docker/systemctl3.py &&\
     chmod +x /usr/bin/systemctl
 
 ADD *.service /etc/systemd/system/
